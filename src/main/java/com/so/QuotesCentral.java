@@ -1,31 +1,20 @@
 package com.so;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Data
+@AllArgsConstructor
 public class QuotesCentral {
 
     private MessageServer messageServer;
     private QuoteProvider quoteProvider;
 
-    public void setMessageServer(MessageServer messageServer) {
-        this.messageServer = messageServer;
-    }
-
-    public void setQuoteProvider(QuoteProvider quoteProvider) {
-        this.quoteProvider = quoteProvider;
-    }
-
-    private MessageServer getMessageServer() {
-        return messageServer;
-    }
-
-    private QuoteProvider getProvider() {
-        return quoteProvider;
-    }
-
     public List<Quote> getQuotes() {
-        return getProvider().generateQuotes();
+        return quoteProvider.generateQuotes();
     }
 
     public List<Quote> findByAuthor(final String author) {
@@ -34,10 +23,10 @@ public class QuotesCentral {
 
     public boolean publishQuotes(List<Quote> quotes) {
         try {
-            getMessageServer().connect();
+            messageServer.connect();
             return getMessageServer().publish(quotes);
         } finally {
-            getMessageServer().disconnect();
+            messageServer.disconnect();
         }
     }
 

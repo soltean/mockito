@@ -18,7 +18,7 @@ public class QuoteProvider {
                     .map(arr -> new Quote(arr[0], arr[1], Integer.parseInt(arr[2])))
                     .collect(Collectors.toList());
         } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+            System.out.println("Error "+e);
         }
         return null;
     }
