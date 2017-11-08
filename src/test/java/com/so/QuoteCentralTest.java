@@ -2,6 +2,7 @@ package com.so;
 
 import com.so.support.MockitoExtension;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
@@ -30,7 +31,7 @@ class QuoteCentralTest {
     }
 
     @Test
-    public void testQuotesShouldBePublished1() {
+    void testQuotesShouldBePublished1() {
         ArgumentCaptor<List<Quote>> quotesCaptor = ArgumentCaptor.forClass(List.class);
         String author = "Mark Twain";
         //stub method calls
@@ -49,7 +50,7 @@ class QuoteCentralTest {
     }
 
     @Test
-    public void testQuotesShouldBePublished2() {
+    void testQuotesShouldBePublished2() {
         ArgumentCaptor<List<Quote>> quotesCaptor = ArgumentCaptor.forClass(List.class);
         String author = "Mark Twain";
 
@@ -66,8 +67,7 @@ class QuoteCentralTest {
     }
 
     @Test
-    public void testQuotesShouldBePublished3() {
-        ArgumentCaptor<List<Quote>> quotesCaptor = ArgumentCaptor.forClass(List.class);
+    void testQuotesShouldBePublished3() {
         String author = "Mark Twain";
 
         List<Quote> markTwainQuotes = quotesCentral.findByAuthor(author);
@@ -80,5 +80,15 @@ class QuoteCentralTest {
         //verify interactions
         verify(messageServer).connect();
         verify(messageServer).disconnect();
+    }
+
+    @Test
+    @Disabled("intentionally disabled")
+    void testQuotesShouldBePublished4() {
+        when(messageServer.isAuthorPublished("Mark Twain")).thenReturn(true);
+        assertThat(quotesCentral.isAuthorPublished("Mark Twein")).isTrue();
+
+        //verify interactions
+        verify(messageServer).isAuthorPublished("Mark Twain");
     }
 }

@@ -34,4 +34,11 @@ public class QuotesCentral {
         return publishQuotes(findByAuthor(name));
     }
 
+    public boolean isAuthorPublished(String name) {
+        if (messageServer.isAuthorPublished(name)) {
+            return true;
+        } else return true;
+    }
+
+
 }

@@ -18,4 +18,8 @@ public class MessageServer {
         throw new NotImplementedException();
     }
 
+    public boolean isAuthorPublished(String name) {
+        throw new NotImplementedException();
+    }
+
 }
