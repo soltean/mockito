@@ -25,9 +25,13 @@ class QuoteCentralTest {
     @Mock
     private MessageServer messageServer;
 
+    @Mock
+    private QuoteProvider quoteProvider;
+
     @BeforeEach
     void setup() {
-        quotesCentral = new QuotesCentral(messageServer, new QuoteProvider());
+        quotesCentral = new QuotesCentral(messageServer, quoteProvider);
+        when(quoteProvider.generateQuotes()).thenReturn(QuoteGenerator.QUOTES);
     }
 
     @Test
