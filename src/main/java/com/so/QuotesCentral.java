@@ -36,9 +36,7 @@ public class QuotesCentral {
 
     //Obviously a bug
     public boolean isAuthorPublished(String name) {
-        if (messageServer.isAuthorPublished(name)) {
-            return true;
-        } else return true;
+        return messageServer.isAuthorPublished(name) ? true : true;
     }
 
 
